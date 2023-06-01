@@ -1,18 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "./Button";
+import { read, create } from "./localStorage";
+
+const KEY = "NAUJAS";
 
 function Create({ numbers }) {
   const [number, setNumber] = useState(1);
   const [color, setColor] = useState("white");
   const [range, setRange] = useState(50);
   const [newSq, setNewSq] = useState(null);
+  const [list, setList] = useState(null);
+  const [lastUpdate, setLastUpdate] = useState(Date.now());
 
-  console.group(newSq);
+  useEffect(() => {
+    setList(read(KEY));
+  }, [lastUpdate]);
+
+  useEffect(() => {
+    if (newSq === null) {
+      return [];
+    }
+    create(KEY, newSq);
+    setLastUpdate(Date.now());
+  }, [newSq]);
+
   return (
     <>
       <div className="dice-container">
         <div className="dice-frame">
-          <div className={"dice-" + number}></div>
+          <div
+            className={"dice-" + number}
+            style={{ fontSize: range + "px", color: color }}
+          ></div>
         </div>
         <div className="numbers-container">
           {numbers.map((n) => (

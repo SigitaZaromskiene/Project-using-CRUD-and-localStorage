@@ -17,7 +17,6 @@ function App() {
         <div className="left">
           <Create numbers={numbers} />
         </div>
-
         <div className="right"></div>
       </div>
     </div>
