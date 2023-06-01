@@ -7,16 +7,19 @@
   .content {
     display: flex;
     justify-content: flex-start;
-    gap: 25px;
-    flex-direction: column;
+    gap: 45px;
     width: 1200px;
     margin-top: 50px;
 
+    .right {
+      width: 65%;
+    }
+
     .left {
-      width: 30%;
       background-color: rgb(87, 121, 18);
       gap: 15px;
       padding: 15px;
+      height: 310px;
 
       .numbers-container {
         display: flex;
@@ -65,29 +68,31 @@
           display: flex;
           justify-content: center;
           align-items: center;
-
-          .dice {
-            &-1::after {
-              content: "\2680";
-            }
-            &-2::after {
-              content: "\2681";
-            }
-            &-3::after {
-              content: "\2682";
-            }
-            &-4::after {
-              content: "\2683";
-            }
-            &-5::after {
-              content: "\2684";
-            }
-            &-6::after {
-              content: "\2685";
-            }
-          }
         }
       }
+    }
+  }
+
+  .dice {
+    height: 50px;
+    width: 250px;
+    &-1::after {
+      content: "\2680";
+    }
+    &-2::after {
+      content: "\2681";
+    }
+    &-3::after {
+      content: "\2682";
+    }
+    &-4::after {
+      content: "\2683";
+    }
+    &-5::after {
+      content: "\2684";
+    }
+    &-6::after {
+      content: "\2685";
     }
   }
 }

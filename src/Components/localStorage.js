@@ -6,7 +6,6 @@ const write = (key, data) => {
 
 export const read = (key) => {
   const data = localStorage.getItem(key);
-
   if (data === null) {
     return [];
   }

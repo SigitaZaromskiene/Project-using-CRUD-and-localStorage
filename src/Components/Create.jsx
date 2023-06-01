@@ -1,28 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "./Button";
-import { read, create } from "./localStorage";
+import { v4 as uuidv4 } from "uuid";
 
-const KEY = "NAUJAS";
-
-function Create({ numbers }) {
+function Create({ numbers, setNewSq }) {
   const [number, setNumber] = useState(1);
   const [color, setColor] = useState("white");
   const [range, setRange] = useState(50);
-  const [newSq, setNewSq] = useState(null);
-  const [list, setList] = useState(null);
-  const [lastUpdate, setLastUpdate] = useState(Date.now());
-
-  useEffect(() => {
-    setList(read(KEY));
-  }, [lastUpdate]);
-
-  useEffect(() => {
-    if (newSq === null) {
-      return [];
-    }
-    create(KEY, newSq);
-    setLastUpdate(Date.now());
-  }, [newSq]);
 
   return (
     <>
@@ -35,7 +18,11 @@ function Create({ numbers }) {
         </div>
         <div className="numbers-container">
           {numbers.map((n) => (
-            <div onClick={() => setNumber(n.num)} className="numbers">
+            <div
+              key={uuidv4()}
+              onClick={() => setNumber(n.num)}
+              className="numbers"
+            >
               {n.number}
             </div>
           ))}
