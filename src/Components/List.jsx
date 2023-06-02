@@ -1,6 +1,16 @@
 import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleXmark,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
+import DeleteModal from "./DeleteModal";
 
 function List({ list }) {
+  const [deleteModal, setDeleteModal] = useState(null);
+
   if (list === null) {
     return "Loading...";
   }
@@ -24,12 +34,20 @@ function List({ list }) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            position: "relative",
           }}
         >
           <div
             className={"dice-" + li.number}
             style={{ color: li.color, fontSize: li.range }}
           ></div>
+          <FontAwesomeIcon
+            className="exit"
+            icon={faCircleXmark}
+            onClick={() => setDeleteModal(li)}
+          />
+          <DeleteModal deleteModal={deleteModal} />
+          <FontAwesomeIcon className="edit" icon={faPenToSquare} />
         </div>
       ))}
     </div>

@@ -13,7 +13,7 @@ const numbers = [
   { number: "Six", num: "6" },
 ];
 
-const KEY = "labas";
+const KEY = "labassss";
 
 function App() {
   const [newSq, setNewSq] = useState(null);
@@ -31,6 +31,7 @@ function App() {
     create(KEY, newSq);
     setLastUpdate(Date.now());
   }, [newSq]);
+
   return (
     <div className="container">
       <div className="content">

@@ -13,6 +13,22 @@
 
     .right {
       width: 65%;
+
+      .exit {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .edit {
+        position: absolute;
+        top: 8px;
+        left: 10px;
+        font-size: 24px;
+        cursor: pointer;
+      }
     }
 
     .left {
