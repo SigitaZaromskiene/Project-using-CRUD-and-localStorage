@@ -24,3 +24,10 @@ export const destroy = (key, id) => {
   const filtered = allData.filter((d) => d.id !== id);
   write(key, filtered);
 };
+
+
+export const edit = (key, data, id)=>{
+  const allData = read(key)
+  const newData = allData.map(d=>d.id===id? {...d, ...data, id:id}: {...d})
+  write(key, newData)
+}
