@@ -1,7 +1,7 @@
 import "./App.scss";
 import Create from "./Components/Create";
 import List from "./Components/List";
-import { read, create } from "./Components/localStorage";
+import { read, create, destroy } from "./Components/localStorage";
 import { useEffect, useState } from "react";
 
 const numbers = [
@@ -20,6 +20,9 @@ function App() {
   const [list, setList] = useState(null);
   const [lastUpdate, setLastUpdate] = useState(Date.now());
 
+  const [deleteModal, setDeleteModal] = useState(null);
+  const [deleteData, setDeleteData] = useState(null);
+
   useEffect(() => {
     setList(read(KEY));
   }, [lastUpdate]);
@@ -32,6 +35,14 @@ function App() {
     setLastUpdate(Date.now());
   }, [newSq]);
 
+  useEffect(() => {
+    if (deleteData === null) {
+      return;
+    }
+    destroy(KEY, deleteData.id);
+    setLastUpdate(Date.now());
+  }, [deleteData]);
+
   return (
     <div className="container">
       <div className="content">
@@ -39,7 +50,13 @@ function App() {
           <Create numbers={numbers} setNewSq={setNewSq} />
         </div>
         <div className="right">
-          <List list={list}></List>
+          <List
+            list={list}
+            setList={setList}
+            setDeleteModal={setDeleteModal}
+            setDeleteData={setDeleteData}
+            deleteModal={deleteModal}
+          ></List>
         </div>
       </div>
     </div>

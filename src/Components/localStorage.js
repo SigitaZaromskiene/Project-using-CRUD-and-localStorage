@@ -18,3 +18,9 @@ export const create = (key, data) => {
   allData.push(data);
   write(key, allData);
 };
+
+export const destroy = (key, id) => {
+  const allData = read(key);
+  const filtered = allData.filter((d) => d.id !== id);
+  write(key, filtered);
+};

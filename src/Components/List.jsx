@@ -8,9 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import DeleteModal from "./DeleteModal";
 
-function List({ list }) {
-  const [deleteModal, setDeleteModal] = useState(null);
-
+function List({ list, setDeleteData, setDeleteModal, deleteModal }) {
   if (list === null) {
     return "Loading...";
   }
@@ -46,7 +44,14 @@ function List({ list }) {
             icon={faCircleXmark}
             onClick={() => setDeleteModal(li)}
           />
-          <DeleteModal deleteModal={deleteModal} />
+          {deleteModal && deleteModal.id === li.id ? (
+            <DeleteModal
+              deleteModal={deleteModal}
+              setDeleteData={setDeleteData}
+              li={li}
+              setDeleteModal={setDeleteModal}
+            />
+          ) : null}
           <FontAwesomeIcon className="edit" icon={faPenToSquare} />
         </div>
       ))}

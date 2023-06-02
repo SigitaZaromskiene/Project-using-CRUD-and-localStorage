@@ -1,7 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
 
-function DeleteModal({ deleteModal }) {
+function DeleteModal({ setDeleteModal, setDeleteData, li }) {
+  const deleteSqHandler = () => {
+    setDeleteData(li);
+  };
   return (
     <>
       <div
@@ -25,10 +28,14 @@ function DeleteModal({ deleteModal }) {
             gap: "10px",
             justifyContent: "center",
             marginTop: "8px",
+            cursor: "pointer",
           }}
         >
-          <FontAwesomeIcon icon={faCheck} />
-          <FontAwesomeIcon icon={faCircleXmark} />
+          <FontAwesomeIcon icon={faCheck} onClick={deleteSqHandler} />
+          <FontAwesomeIcon
+            icon={faCircleXmark}
+            onClick={() => setDeleteModal(null)}
+          />
         </div>
       </div>
     </>
